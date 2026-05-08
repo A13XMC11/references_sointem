@@ -1,26 +1,130 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --odoo-primary: #714b67;
+  --odoo-primary-dark: #5c3d54;
+  --odoo-teal: #017e84;
+  --odoo-bg: #f5f5f5;
+  --odoo-section-left: #ede9f0;
+  --odoo-section-right: #e8f4f5;
+  --odoo-text: #212529;
+  --odoo-border: #dee2e6;
+  --background: var(--odoo-bg);
+  --foreground: var(--odoo-text);
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-sans: var(--font-lato);
+  --font-reward: var(--font-reward);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-lato), Arial, Helvetica, sans-serif;
+}
+
+/* Enhanced input states */
+input {
+  color: var(--odoo-text);
+  transition: border-color 150ms var(--ease-out),
+              box-shadow 150ms var(--ease-out),
+              background-color 150ms ease;
+}
+
+input::placeholder {
+  color: #6c757d;
+}
+
+input:hover {
+  border-color: var(--odoo-primary);
+  box-shadow: 0 1px 3px rgba(113, 75, 103, 0.1);
+}
+
+input:focus {
+  border-color: var(--odoo-primary);
+  box-shadow: 0 0 0 3px rgba(113, 75, 103, 0.1);
+  outline: none;
+}
+
+/* Button press feedback */
+button {
+  transition: background-color 200ms var(--ease-out),
+              transform 100ms var(--ease-out),
+              box-shadow 150ms var(--ease-out);
+  cursor: pointer;
+}
+
+button:hover:not(:disabled) {
+  box-shadow: 0 4px 12px rgba(113, 75, 103, 0.15);
+}
+
+button:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Animations */
+.success-message {
+  animation: slideIn 300ms var(--ease-out) forwards;
+}
+
+@starting-style {
+  .success-message {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.error-message {
+  animation: fadeIn 200ms var(--ease-out) forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Spinner animation */
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Accessibility: Reduce motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
