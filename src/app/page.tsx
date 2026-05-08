@@ -281,16 +281,16 @@ function RewardsModal({ onAccept }: { onAccept: () => void }) {
         <div className="space-y-5 p-5 sm:p-8">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <RewardCard
-              title="Referral"
+              title="Licenciamiento de Odoo"
               percentage="10%"
-              description="Recibe el 10% del valor de la suscripcion"
+              description="Recibe el 10% del valor de la suscripcion en licenciamiento"
               limit="Monto maximo: $4,000"
             />
             <RewardCard
-              title="Reference"
+              title="Implementación con Partner Odoo"
               percentage="5%"
-              description="Recibe el 5% del valor de la suscripcion"
-              limit="Monto maximo: $2,000"
+              description="Recibe el 5% del valor de la Implementación"
+              limit="Monto maximo: $4,000"
             />
           </div>
 
